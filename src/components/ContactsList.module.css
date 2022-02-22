@@ -1,0 +1,36 @@
+.contacts__list {
+  padding: 10px;
+  max-width: 600px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  align-items: left;
+}
+
+.contacts__item {
+  min-width: 600px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  border-bottom: 1px solid gray;
+  margin-bottom: 5px;
+}
+
+.contacts__item p {
+  display: block;
+  margin: 5px auto 5px 0px;
+}
+
+.contacts__item button {
+  height: 30px;
+  width: 65px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.contacts__item button:active {
+  color: white;
+  background-color: red;
+}
