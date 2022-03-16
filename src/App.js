@@ -3,9 +3,9 @@ import "./App.css";
 import shortid from "shortid";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ContactsList from "./components/ContactsList";
-import ContactForm from "./components/ContactForm";
-import Filter from "./components/Filter";
+import ContactsList from "./components/ContactsList/ContactsList";
+import ContactForm from "./components/ContactForm/ContactForm";
+import Filter from "./components/Filter/Filter";
 
 class App extends Component {
   state = {
@@ -31,9 +31,6 @@ class App extends Component {
 
     if (contactAllreadyExists) {
       toast.error(`${newContact.name} is already in contacts`);
-    } else if (name === "" || number === "") {
-      toast("Pleasy fill empty fields");
-      return;
     } else {
       this.setState((prevState) => ({
         contacts: [...prevState.contacts, newContact],
@@ -61,6 +58,20 @@ class App extends Component {
       contacts: prevState.contacts.filter((contact) => contact.id !== id),
     }));
   };
+
+  componentDidMount() {
+    if (localStorage.getItem("contacts")) {
+      const savedContacts = JSON.parse(localStorage.getItem("contacts"));
+      this.setState((prevState) => ({
+        contacts: [...savedContacts],
+      }));
+    }
+    localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+  }
 
   render() {
     const { filter } = this.state;
