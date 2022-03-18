@@ -18,6 +18,20 @@ class App extends Component {
     filter: "",
   };
 
+  componentDidMount() {
+    if (localStorage.getItem("contacts")) {
+      const savedContacts = JSON.parse(localStorage.getItem("contacts"));
+      this.setState((prevState) => ({
+        contacts: [...savedContacts],
+      }));
+    }
+    localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+  }
+
   onAddContact = ({ name, number }) => {
     const newContact = {
       id: shortid.generate(),
@@ -58,20 +72,6 @@ class App extends Component {
       contacts: prevState.contacts.filter((contact) => contact.id !== id),
     }));
   };
-
-  componentDidMount() {
-    if (localStorage.getItem("contacts")) {
-      const savedContacts = JSON.parse(localStorage.getItem("contacts"));
-      this.setState((prevState) => ({
-        contacts: [...savedContacts],
-      }));
-    }
-    localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
-  }
-
-  componentDidUpdate() {
-    localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
-  }
 
   render() {
     const { filter } = this.state;

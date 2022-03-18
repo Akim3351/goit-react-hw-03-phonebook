@@ -18,8 +18,7 @@ class Filter extends Component {
 }
 
 Filter.propTypes = {
-  filter: propTypes.string,
-  onSearch: propTypes.func,
+  onSearch: propTypes.func.isRequired,
 };
 
 export default Filter;

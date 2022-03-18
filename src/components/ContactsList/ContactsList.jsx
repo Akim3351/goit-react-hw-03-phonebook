@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ContactsListItem from "../ContactsListItem/ContactsListItem";
 import css from "./ContactsList.module.css";
 import propTypes from "prop-types";
 
@@ -11,12 +12,13 @@ class ContactsList extends Component {
         {contacts.map((contact) => {
           const { id, name, number } = contact;
           return (
-            <li key={id} className={css.contacts__item}>
-              <p>
-                {name}: {number}
-              </p>
-              <button onClick={() => onDelete(id)}>delete</button>
-            </li>
+            <ContactsListItem
+              id={id}
+              name={name}
+              number={number}
+              onDelete={onDelete}
+              key={id}
+            />
           );
         })}
       </ul>
