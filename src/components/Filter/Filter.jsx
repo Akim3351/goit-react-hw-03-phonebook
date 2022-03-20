@@ -18,6 +18,7 @@ class Filter extends Component {
 }
 
 Filter.propTypes = {
+  filter: propTypes.string.isRequired,
   onSearch: propTypes.func.isRequired,
 };
 
