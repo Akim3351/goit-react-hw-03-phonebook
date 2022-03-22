@@ -1,20 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 import css from "../ContactsListItem/ContactsListItem.module.css";
 import propTypes from "prop-types";
 
-class ContactsListItem extends Component {
-  render() {
-    const { id, name, number, onDelete } = this.props;
-    return (
-      <li id={id} className={css.contacts__item}>
-        <p>
-          {name}: {number}
-        </p>
-        <button onClick={() => onDelete(id)}>delete</button>
-      </li>
-    );
-  }
-}
+const ContactsListItem = ({ id, name, number, onDelete }) => {
+  return (
+    <li id={id} className={css.contacts__item}>
+      <p>
+        {name}: {number}
+      </p>
+      <button onClick={() => onDelete(id)}>delete</button>
+    </li>
+  );
+};
 
 ContactsListItem.propTypes = {
   id: propTypes.string.isRequired,

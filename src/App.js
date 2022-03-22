@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./App.css";
 import shortid from "shortid";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -75,7 +74,6 @@ class App extends Component {
 
   render() {
     const { filter } = this.state;
-
     const filteredContacts = this.onSearch();
 
     return (
@@ -84,7 +82,7 @@ class App extends Component {
         <ContactForm onAddContact={this.onAddContact} />
 
         <h2> Contacts </h2>
-        <Filter value={filter} onSearch={this.onFilterChange} />
+        <Filter filter={filter} onSearch={this.onFilterChange} />
         <ContactsList contacts={filteredContacts} onDelete={this.onDelete} />
         <ToastContainer />
       </div>
